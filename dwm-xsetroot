@@ -1,0 +1,2 @@
+#!/bin/sh
+xsetroot -name "$(cat /sys/class/power_supply/BAT0/status): $(cat /sys/class/power_supply/BAT0/capacity)% $(find /sys -name "link_mode" 2> /dev/null | awk -F/ '{printf $(NF-1)": "; system("cat " $0);}' | head -2 | xargs echo -n) $(date '+%a, the %d of %b %H:%M')"& sleep 60
