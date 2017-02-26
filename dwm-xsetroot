@@ -1,2 +1,31 @@
 #!/bin/sh
-xsetroot -name "$(cat /sys/class/power_supply/BAT0/status): $(cat /sys/class/power_supply/BAT0/capacity)% $(find /sys -name "link_mode" 2> /dev/null | awk -F/ '{printf $(NF-1)": "; system("cat " $0);}' | head -2 | xargs echo -n) $(date '+%a, the %d of %b %H:%M')"& sleep 60
+_fifo=/tmp/dwm-xsetroot.fifo
+test -e "$_fifo" && rm "$_fifo"
+mkfifo "$_fifo"
+
+#date
+while :;do
+echo "D$(date '+%a, the %d of %b %H:%M')"
+sleep 60;
+done > "$_fifo" &
+
+#battery
+while :;do
+echo "B$(cat /sys/class/power_supply/BAT0/status | sed 's/Unknown/Charging/g'): $(cat /sys/class/power_supply/BAT0/capacity)%";
+sleep 1;
+done > "$_fifo" &
+
+#network
+while :;do
+netstat -i | awk 'BEGIN{printf"N"}$1~/eth|wlan/ && $3>0 {printf$1": up "}END{printf"\n"}' | sed 's/.$//'
+sleep 1
+done > "$_fifo" &
+
+cat "$_fifo" | while read line; do
+case $line in
+D*) clock=${line#?};;
+B*) battery=${line#?};;
+N*) network=${line#?};;
+esac
+xsetroot -name "$battery $network $clock";
+done
