@@ -16,7 +16,7 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 /* tagging */
-static const char *tags[] = { "Eli", "Dave", "Tim", "Charlie", "Pam", "Harper", "Shelly", "Olly" };
+static const char *tags[] = { "Eli", "Desmond", "Thea", "Charlie", "Pam", "Harper", "Sierra", "Olly" };
 //static const char *tags[] = {"Unum", "Dual", "Tria", "Quad", "Pent", "Hexa", "Sept", "Octi"};
 static const unsigned int gappx = 8; // Gap tiled, in pixels
 
