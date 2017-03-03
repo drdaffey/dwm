@@ -88,8 +88,8 @@ static Key keys[] = {
 { ALTKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_Tab,    shiftview,           {1} },
 { MODKEY|ShiftMask,                       XK_Tab,    shiftview,           {-1} },
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[4]} }, //dwindle layout
+	{ MODKEY,             XK_c,      killclient,     {0} },
+{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 { MODKEY|ShiftMask, XK_f, togglefloating, {0}},
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
